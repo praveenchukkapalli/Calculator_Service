@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApiController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Calculator</a> &gt; <a href="index.source.html" class="el_package">com.baton.Calculator.controller</a> &gt; <span class="el_source">ApiController.java</span></div><h1>ApiController.java</h1><pre class="source lang-java linenums">package com.baton.Calculator.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.NullLiteral;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import com.baton.Calculator.service.CalculatorService;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+@RestController
+<span class="fc" id="L12">public class ApiController {</span>
+    @Autowired
+
+    CalculatorService CalcService;
+
+    /**
+     *
+     * @param Num1
+     * @param Num2
+     * @return Integer
+     */
+    @RequestMapping(method = RequestMethod.GET,value=&quot;/add/&quot;)//retrieve required objects from the database
+    private Integer add(@RequestParam(&quot;Num1&quot;) int Num1, @RequestParam(&quot;Num2&quot;) int Num2)
+    {
+<span class="fc" id="L26">        String mode=&quot;add&quot;;</span>
+<span class="fc" id="L27">        return CalcService.calculate(mode,Num1,Num2);</span>
+    }
+
+    /**
+     *
+     * @param Num1
+     * @param Num2
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value=&quot;/sub/&quot;)//retrieve required objects from the database
+    private Integer subract(@RequestParam(&quot;Num1&quot;) int Num1, @RequestParam(&quot;Num2&quot;) int Num2)
+    {
+<span class="fc" id="L39">        String mode=&quot;sub&quot;;</span>
+<span class="fc" id="L40">        return CalcService.calculate(mode,Num1,Num2);</span>
+    }
+
+    /**
+     *
+     * @param Num1
+     * @param Num2
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value=&quot;/mul/&quot;)//retrieve required objects from the database
+    private Integer multiply(@RequestParam(&quot;Num1&quot;) int Num1, @RequestParam(&quot;Num2&quot;) int Num2)
+    {
+<span class="fc" id="L52">        String mode=&quot;mul&quot;;</span>
+<span class="fc" id="L53">        return CalcService.calculate(mode,Num1,Num2);</span>
+    }
+
+    /**
+     *
+     * @param Num1
+     * @param Num2
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET,value=&quot;/div/&quot;)//retrieve required objects from the database
+    private Integer divide(@RequestParam(&quot;Num1&quot;) int Num1, @RequestParam(&quot;Num2&quot;) int Num2)
+    {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if(Num2==0){</span>
+<span class="fc" id="L66">            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, &quot;Cannot divide by zero&quot;);</span>
+
+        }
+        else {
+<span class="fc" id="L70">            String mode = &quot;div&quot;;</span>
+<span class="fc" id="L71">            return CalcService.calculate(mode, Num1, Num2);</span>
+        }
+
+
+    }
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

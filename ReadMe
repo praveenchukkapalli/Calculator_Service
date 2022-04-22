@@ -1,0 +1,19 @@
+@Author Praveen Kumar Chukkapalli
+
+#This is a simple calculator Application, which uses rest API to deliver its services
+#This program accepts two Integers through GET request with specifying mode and returns the result in integer format
+
+#Request Format :
+        Method: GET
+        URI : "/<$mode>/?Num1=<$Num1>&Num2=<$Num2>"
+            $mode = add --> addition of two numbers
+                    sub --> subraction of two numbers
+                    div --> division of two numbers
+                    mul --> multiplication of two numbers
+            $Num1 and $Num2 are two Integers given for calculation
+        Accepted format Type: JSON
+
+#Output Format :
+        Output Format : Result of calculation in Integer format
+        Status code : 200 --> OK
+                      400 --> Bad Request / Cannot divide by ZERO (if Num2 in div is 0)
